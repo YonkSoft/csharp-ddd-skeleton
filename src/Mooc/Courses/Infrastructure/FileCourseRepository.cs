@@ -1,11 +1,11 @@
+using System.IO;
+using System.Threading.Tasks;
+using CodelyTv.Mooc.Courses.Domain;
+using Newtonsoft.Json;
+
 namespace CodelyTv.Mooc.Courses.Infrastructure
 {
-    using System.IO;
-    using System.Threading.Tasks;
-    using Domain;
-    using Newtonsoft.Json;
-
-    public class FileCourseRepository : ICourseRepository
+    public class FileCourseRepository : CourseRepository
     {
         private readonly string _filePath = Directory.GetCurrentDirectory() + "/courses";
 
@@ -13,7 +13,7 @@ namespace CodelyTv.Mooc.Courses.Infrastructure
         {
             await Task.Run(() =>
             {
-                using (StreamWriter outputFile = new StreamWriter(this.FileName(course.Id.Value), false))
+                using (var outputFile = new StreamWriter(FileName(course.Id.Value), false))
                 {
                     outputFile.WriteLine(JsonConvert.SerializeObject(course));
                 }

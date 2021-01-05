@@ -1,8 +1,8 @@
+using System;
+using System.Threading.Tasks;
+
 namespace CodelyTv.Shared.Domain.Bus.Command
 {
-    using System;
-    using System.Threading.Tasks;
-
     internal abstract class CommandHandlerWrapper
     {
         public abstract Task Handle(Command command, IServiceProvider provider);
@@ -13,7 +13,7 @@ namespace CodelyTv.Shared.Domain.Bus.Command
     {
         public override async Task Handle(Command domainEvent, IServiceProvider provider)
         {
-            var handler = (ICommandHandler<TCommand>) provider.GetService(typeof(ICommandHandler<TCommand>));
+            var handler = (CommandHandler<TCommand>) provider.GetService(typeof(CommandHandler<TCommand>));
             await handler.Handle((TCommand) domainEvent);
         }
     }

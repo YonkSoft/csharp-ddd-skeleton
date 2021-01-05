@@ -1,12 +1,12 @@
+using System.Threading.Tasks;
+using CodelyTv.Shared.Domain.Bus.Event;
+using CodelyTv.Shared.Domain.Courses.Domain;
+
 namespace CodelyTv.Test.Mooc.Shared.Infrastructure.Bus.Event.RabbitMq
 {
-    using System.Threading.Tasks;
-    using CodelyTv.Mooc.Courses.Domain;
-    using CodelyTv.Shared.Domain.Bus.Event;
-
-    public class TestAllWorksOnRabbitMqEventsPublished : IDomainEventSubscriber<CourseCreatedDomainEvent>
+    public class TestAllWorksOnRabbitMqEventsPublished : DomainEventSubscriber<CourseCreatedDomainEvent>
     {
-        public bool HasBeenExecuted = false;
+        public bool HasBeenExecuted;
 
         public Task On(CourseCreatedDomainEvent domainEvent)
         {

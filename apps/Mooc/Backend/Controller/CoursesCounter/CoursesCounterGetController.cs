@@ -1,17 +1,17 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodelyTv.Mooc.CoursesCounters.Application.Find;
+using CodelyTv.Shared.Domain.Bus.Query;
+using Microsoft.AspNetCore.Mvc;
+
 namespace CodelyTv.Apps.Mooc.Backend.Controller.CoursesCounter
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using CodelyTv.Mooc.CoursesCounter.Application.Find;
-    using Microsoft.AspNetCore.Mvc;
-    using Shared.Domain.Bus.Query;
-
     [Route("courses-counter")]
-    public class CoursesCounterGetController : Controller
+    public class CoursesCounterGetController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private readonly IQueryBus _bus;
+        private readonly QueryBus _bus;
 
-        public CoursesCounterGetController(IQueryBus bus)
+        public CoursesCounterGetController(QueryBus bus)
         {
             _bus = bus;
         }
@@ -20,9 +20,9 @@ namespace CodelyTv.Apps.Mooc.Backend.Controller.CoursesCounter
         [Produces("application/json")]
         public async Task<IActionResult> Index()
         {
-            CoursesCounterResponse response = await _bus.Ask<CoursesCounterResponse>(new FindCoursesCounterQuery());
+            var response = await _bus.Ask<CoursesCounterResponse>(new FindCoursesCounterQuery());
 
-            return Ok(new Dictionary<string, int>()
+            return Ok(new Dictionary<string, int>
             {
                 {"total", response.Total}
             });

@@ -1,24 +1,21 @@
 ﻿{
   "iisSettings": {
     "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:59226",
-      "sslPort": 44364
-    }
+    "anonymousAuthentication": true
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
+    "Frontend": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:8093;http://localhost:8094",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Frontend": {
+    "RabbitMq Backoffice command consumer":{
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "commandLineArgs": "domain-events:rabbitmq:consume",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

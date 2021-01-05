@@ -1,10 +1,10 @@
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+
 namespace CodelyTv.Shared.Domain
 {
-    using System;
-    using System.Globalization;
-    using System.Linq;
-    using System.Reflection;
-
     public static class ReflectionHelper
     {
         public static Assembly GetAssemblyByName(string name)
@@ -16,6 +16,7 @@ namespace CodelyTv.Shared.Domain
                 .FirstOrDefault(x => x.FullName.ToUpper(CultureInfo.InvariantCulture)
                     .Contains(name, StringComparison.InvariantCulture));
         }
+
         public static Type GetType(string name)
         {
             if (string.IsNullOrEmpty(name)) return null;
@@ -23,7 +24,7 @@ namespace CodelyTv.Shared.Domain
             return AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes())
                 .FirstOrDefault(type => type.Name.Equals(name, StringComparison.InvariantCulture));
         }
-        
+
         public static Type GetType(string assemblyName, string name)
         {
             if (string.IsNullOrEmpty(assemblyName) && string.IsNullOrEmpty(name)) return null;
@@ -32,7 +33,7 @@ namespace CodelyTv.Shared.Domain
 
             return GetType(assembly, name);
         }
-        
+
         public static Type GetType(Assembly assembly, string name)
         {
             if (assembly == null) return null;

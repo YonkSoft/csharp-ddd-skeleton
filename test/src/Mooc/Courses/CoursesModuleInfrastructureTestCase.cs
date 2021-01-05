@@ -1,9 +1,9 @@
+using CodelyTv.Mooc.Courses.Domain;
+
 namespace CodelyTv.Test.Mooc.Courses
 {
-    using CodelyTv.Mooc.Courses.Domain;
-
     public abstract class CoursesModuleInfrastructureTestCase : MoocContextInfrastructureTestCase
     {
-        protected ICourseRepository Repository => GetService<ICourseRepository>();
+        protected CourseRepository Repository => GetService<CourseRepository>();
     }
 }

@@ -1,9 +1,9 @@
+using System;
+using CodelyTv.Shared.Domain;
+
 namespace CodelyTv.Shared.Infrastructure
 {
-    using System;
-    using Domain;
-
-    public sealed class CSharpRandomNumberGenerator : IRandomNumberGenerator
+    public sealed class CSharpRandomNumberGenerator : RandomNumberGenerator
     {
         private readonly Random _random = new Random();
 
